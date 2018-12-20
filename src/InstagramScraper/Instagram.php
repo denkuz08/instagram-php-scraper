@@ -848,9 +848,13 @@ class Instagram
 
             if (isset($response->headers['Set-Cookie'])):
                 $cookies = static::parseCookies($response->headers['Set-Cookie']);
-            else:
+            elseif(isset($response->headers['Set-Cookie'])):
                 $cookies = static::parseCookies($response->headers['set-cookie']);
             endif;
+            if(isset($cookies) && $cookies['csrftoken']) {
+                $this->userSession['csrftoken'] = $cookies['csrftoken'];
+            }
+
             $this->userSession['csrftoken'] = $cookies['csrftoken'];
 
             $arr = $this->decodeRawBodyToJson($response->raw_body);
