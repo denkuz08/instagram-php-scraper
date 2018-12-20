@@ -854,9 +854,7 @@ class Instagram
             if(isset($cookies) && $cookies['csrftoken']) {
                 $this->userSession['csrftoken'] = $cookies['csrftoken'];
             }
-
-            $this->userSession['csrftoken'] = $cookies['csrftoken'];
-
+            
             $arr = $this->decodeRawBodyToJson($response->raw_body);
 
             if (!is_array($arr)) {
